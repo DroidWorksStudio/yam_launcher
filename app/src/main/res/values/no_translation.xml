@@ -3,7 +3,7 @@
     <!--About page links-->
     <string name="my_website_link" translatable="false"><![CDATA[by <a href="https://5646316.xyz/">DroidWorksStudio</a>]]></string>
     <string name="github_link" translatable="false"><![CDATA[<a href="https://github.com/DroidWorksStudio/yam_launcher">GitHub</a>]]></string>
-    <string name="libera_link" translatable="false"><![CDATA[<a href="https://liberapay.com/CreativeCodeCat/donate">Liberapay</a><br>(One-Time)]]></string>
+    <string name="libera_link" translatable="false"><![CDATA[<a href="https://liberapay.com/CreativeCodeCat/donate">Liberapay</a><br>(One Time)]]></string>
     <string name="coffee_link" translatable="false"><![CDATA[<a href="https://buymeacoffee.com/creativecodecat">BuyMeACoffee</a><br>(Recurring)]]></string>
     <string name="weather_link" translatable="false"><![CDATA[Weather data by <a href="https://open-meteo.com/">Open-Meteo.com</a><br>(<a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>)]]></string>
     <string name="location_link" translatable="false"><![CDATA[Location data by <a href="https://open-meteo.com/">Open-Meteo.com</a> (<a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>)]]></string>
