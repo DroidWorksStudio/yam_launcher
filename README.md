@@ -9,10 +9,10 @@ by our community.
 
 <div align='center'>
     <p>
-        <img src='https://img.shields.io/badge/Android-SDK_36-BD93F9?style=flat-square&logo=android&logoColor=white'
+        <img src='https://img.shields.io/badge/Android-SDK_36-BD93F8?style=flat-square&logo=android&logoColor=white'
             alt="SDK-36">
         <a href='https://github.com/DroidWorksStudio/yam_launcher/blob/main/LICENSE'><img
-                src='https://img.shields.io/github/license/DroidWorksStudio/yam_launcher?color=BD93F9&style=flat-square'
+                src='https://img.shields.io/github/license/DroidWorksStudio/yam_launcher?color=BD93F8&style=flat-square'
                 alt="LICENSE"></a>
         <br>
         <a href='https://github.com/DroidWorksStudio/yam_launcher/releases/latest'><img
