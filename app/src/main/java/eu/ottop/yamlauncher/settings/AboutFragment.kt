@@ -31,10 +31,10 @@ class AboutFragment : Fragment(), TitleProvider {
 
         // Set up about page links
         stringUtils.setLink(requireActivity().findViewById(R.id.creditText), getString(R.string.my_website_link))
-        stringUtils.setLink(requireActivity().findViewById(R.id.codebergLink), getString(R.string.codeberg_link))
         stringUtils.setLink(requireActivity().findViewById(R.id.githubLink), getString(R.string.github_link))
+        stringUtils.setLink(requireActivity().findViewById(R.id.coffeeLink), getString(R.string.coffee_link))
+        stringUtils.setLink(requireActivity().findViewById(R.id.liberaLink), getString(R.string.libera_link))
         stringUtils.setLink(requireActivity().findViewById(R.id.weatherLink), getString(R.string.weather_link))
-        stringUtils.setLink(requireActivity().findViewById(R.id.donationTitle), getString(R.string.itsover))
 
         requireActivity().findViewById<ImageView>(R.id.iconView).setOnClickListener {
             launcherApps.startAppDetailsActivity(

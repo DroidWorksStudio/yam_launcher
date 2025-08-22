@@ -157,10 +157,12 @@
     <!--About Page Items-->
     <string name="about_title">About YAM Launcher</string>
     <string name="app_icon">App Icon</string>
-    <string name="creditName">By Otto Petäjä</string>
+    <string name="creditName">By DroidWorksStudio</string>
     <string name="source_code">Source Code</string>
-    <string name="codeberg">Codeberg</string>
     <string name="github">GitHub</string>
+    <string name="donate">Donate</string>
+    <string name="coffee">BuyMeACoffee</string>
+    <string name="liberapay">LiberaPay</string>
 
     <string name="reset">Reset</string>
     <string name="restart_text">Restart YAM Launcher</string>
