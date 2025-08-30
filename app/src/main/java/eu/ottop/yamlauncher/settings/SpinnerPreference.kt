@@ -12,7 +12,7 @@ import androidx.preference.Preference
 import androidx.preference.PreferenceViewHolder
 import eu.ottop.yamlauncher.R
 
-class SpinnerPreference (context: Context, attrs: AttributeSet? = null): Preference(context, attrs) {
+class SpinnerPreference(context: Context, attrs: AttributeSet? = null) : Preference(context, attrs) {
 
     private var entries: Array<CharSequence>? = null
     private var entryValues: Array<CharSequence>? = null
@@ -25,7 +25,8 @@ class SpinnerPreference (context: Context, attrs: AttributeSet? = null): Prefere
         context.theme.obtainStyledAttributes(
             attrs,
             R.styleable.SpinnerPreference,
-            0, 0).apply {
+            0, 0
+        ).apply {
 
             try {
                 entries = getTextArray(R.styleable.SpinnerPreference_android_entries)
@@ -34,7 +35,8 @@ class SpinnerPreference (context: Context, attrs: AttributeSet? = null): Prefere
             } finally {
                 recycle()
             }
-        }}
+        }
+    }
 
     override fun onBindViewHolder(holder: PreferenceViewHolder) {
         super.onBindViewHolder(holder)
@@ -46,7 +48,7 @@ class SpinnerPreference (context: Context, attrs: AttributeSet? = null): Prefere
             spinner?.adapter = adapter
         }
 
-        val selectedIndex = entryValues?.indexOf(currentValue as? CharSequence) ?:  entryValues?.indexOf(defaultNo as CharSequence) ?: 0
+        val selectedIndex = entryValues?.indexOf(currentValue as? CharSequence) ?: entryValues?.indexOf(defaultNo as CharSequence) ?: 0
         spinner?.setSelection(selectedIndex)
 
         // Somehow prevents an error :D

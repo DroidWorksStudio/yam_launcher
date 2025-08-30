@@ -14,7 +14,7 @@ class StringUtils {
         return if (value.isNotEmpty()) "$addition$value" else value
     }
 
-    fun cleanString(string: String?) : String? {
+    fun cleanString(string: String?): String? {
         return string?.replace("[^\\p{L}0-9]".toRegex(), "")
     }
 

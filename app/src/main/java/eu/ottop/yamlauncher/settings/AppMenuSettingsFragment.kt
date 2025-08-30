@@ -9,7 +9,8 @@ import eu.ottop.yamlauncher.R
 import eu.ottop.yamlauncher.utils.PermissionUtils
 import eu.ottop.yamlauncher.utils.UIUtils
 
-class AppMenuSettingsFragment : PreferenceFragmentCompat(), TitleProvider { private val permissionUtils = PermissionUtils()
+class AppMenuSettingsFragment : PreferenceFragmentCompat(), TitleProvider {
+    private val permissionUtils = PermissionUtils()
     private var contactPref: SwitchPreference? = null
     private var webSearchPref: SwitchPreference? = null
     private var autoLaunchPref: SwitchPreference? = null
@@ -27,11 +28,11 @@ class AppMenuSettingsFragment : PreferenceFragmentCompat(), TitleProvider { priv
         contactPref?.onPreferenceChangeListener = Preference.OnPreferenceChangeListener { _, newValue ->
 
             if (newValue as Boolean && !permissionUtils.hasPermission(requireContext(), Manifest.permission.READ_CONTACTS)) {
-                    (requireActivity() as SettingsActivity).requestContactsPermission()
-                    return@OnPreferenceChangeListener false
-                } else {
-                    return@OnPreferenceChangeListener true
-                }
+                (requireActivity() as SettingsActivity).requestContactsPermission()
+                return@OnPreferenceChangeListener false
+            } else {
+                return@OnPreferenceChangeListener true
+            }
         }
 
         if (webSearchPref != null && autoLaunchPref != null) {
@@ -50,7 +51,8 @@ class AppMenuSettingsFragment : PreferenceFragmentCompat(), TitleProvider { priv
         contextMenuSettings?.onPreferenceClickListener =
             Preference.OnPreferenceClickListener {
                 uiUtils.switchFragment(requireActivity(), ContextMenuSettingsFragment())
-                true }
+                true
+            }
     }
 
     override fun getTitle(): String {

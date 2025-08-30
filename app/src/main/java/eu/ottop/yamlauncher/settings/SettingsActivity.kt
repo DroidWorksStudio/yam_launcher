@@ -1,7 +1,6 @@
 package eu.ottop.yamlauncher.settings
 
 import android.Manifest
-import android.app.Activity
 import android.app.PendingIntent
 import android.content.Intent
 import android.content.SharedPreferences
@@ -13,6 +12,7 @@ import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
+import androidx.core.content.edit
 import androidx.preference.PreferenceManager
 import eu.ottop.yamlauncher.MainActivity
 import eu.ottop.yamlauncher.R
@@ -59,7 +59,7 @@ class SettingsActivity : AppCompatActivity() {
         }
 
         performBackup = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-            if (result.resultCode == Activity.RESULT_OK) {
+            if (result.resultCode == RESULT_OK) {
                 result.data?.data?.let { uri ->
                     saveSharedPreferencesToFile(uri)
                 }
@@ -67,7 +67,7 @@ class SettingsActivity : AppCompatActivity() {
         }
 
         performRestore = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-            if (result.resultCode == Activity.RESULT_OK) {
+            if (result.resultCode == RESULT_OK) {
                 result.data?.data?.let { uri ->
                     restoreSharedPreferencesFromFile(uri)
                 }
@@ -129,7 +129,7 @@ class SettingsActivity : AppCompatActivity() {
                 outputStream.write(sharedPreferencesText.toByteArray())
             }
             Toast.makeText(this, getString(R.string.backup_success), Toast.LENGTH_SHORT).show()
-        } catch (e: Exception) {
+        } catch (_: Exception) {
             Toast.makeText(this, getString(R.string.backup_fail), Toast.LENGTH_SHORT).show()
         }
     }
@@ -152,31 +152,31 @@ class SettingsActivity : AppCompatActivity() {
                 }
                 val data = backupData.getJSONObject("data")
 
-                val editor = preferences.edit()
+                preferences.edit {
 
-                val keys = data.keys()
+                    val keys = data.keys()
 
-                while (keys.hasNext()){
-                    val key = keys.next()
-                    val entry = data.getJSONObject(key)
-                    val type = entry.getString("type")
+                    while (keys.hasNext()) {
+                        val key = keys.next()
+                        val entry = data.getJSONObject(key)
+                        val type = entry.getString("type")
 
-                    when (type) {
-                        "String" -> editor.putString(key, entry.getString("value"))
-                        "Int" -> editor.putInt(key, entry.getInt("value"))
-                        "Boolean" -> editor.putBoolean(key, entry.getBoolean("value"))
-                        "Long" -> editor.putLong(key, entry.getLong("value"))
-                        "Float" -> editor.putFloat(key, entry.getDouble("value").toFloat())
+                        when (type) {
+                            "String" -> putString(key, entry.getString("value"))
+                            "Int" -> putInt(key, entry.getInt("value"))
+                            "Boolean" -> putBoolean(key, entry.getBoolean("value"))
+                            "Long" -> putLong(key, entry.getLong("value"))
+                            "Float" -> putFloat(key, entry.getDouble("value").toFloat())
+                        }
                     }
-                }
-                editor.putBoolean("isRestored", true)
+                    putBoolean("isRestored", true)
 
-                editor.apply()
+                }
 
                 Toast.makeText(this, getString(R.string.restore_success), Toast.LENGTH_SHORT).show()
-            } catch(e: IllegalArgumentException) {
+            } catch (e: IllegalArgumentException) {
                 Toast.makeText(this, e.message, Toast.LENGTH_SHORT).show()
-            } catch (e: Exception) {
+            } catch (_: Exception) {
                 Toast.makeText(this, getString(R.string.restore_fail), Toast.LENGTH_SHORT).show()
             }
         } else {
@@ -189,7 +189,7 @@ class SettingsActivity : AppCompatActivity() {
             contentResolver.openInputStream(uri)?.bufferedReader().use { reader ->
                 reader?.readText()
             }
-        } catch (e: Exception) {
+        } catch (_: Exception) {
             null
         }
     }
@@ -201,7 +201,8 @@ class SettingsActivity : AppCompatActivity() {
                 arrayOf(Manifest.permission.ACCESS_COARSE_LOCATION),
                 0
             )
-        } catch(_: Exception) {}
+        } catch (_: Exception) {
+        }
     }
 
     fun requestContactsPermission() {
@@ -211,7 +212,8 @@ class SettingsActivity : AppCompatActivity() {
                 arrayOf(Manifest.permission.READ_CONTACTS),
                 1
             )
-        } catch(_: Exception) {}
+        } catch (_: Exception) {
+        }
     }
 
     fun restartApp() {

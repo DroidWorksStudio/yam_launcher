@@ -6,17 +6,17 @@ import android.animation.ArgbEvaluator
 import android.animation.ValueAnimator
 import android.app.Activity
 import android.content.Context
-import android.graphics.Color
 import android.view.View
+import androidx.core.graphics.toColorInt
+import androidx.core.view.isVisible
 import eu.ottop.yamlauncher.settings.SharedPreferenceManager
 
-class Animations (context: Context) {
+class Animations(context: Context) {
 
     private val sharedPreferenceManager = SharedPreferenceManager(context)
     var isInAnim = false
 
     // fadeViewIn and fadeViewOut are for smaller item transitions, such as the action menu
-
     fun fadeViewIn(view: View) {
         view.fadeIn()
     }
@@ -39,8 +39,8 @@ class Animations (context: Context) {
         val originalColor = sharedPreferenceManager.getBgColor()
 
         // Only animate darkness onto the transparent background
-        if (originalColor == Color.parseColor("#00000000")) {
-            val newColor = Color.parseColor("#3F000000")
+        if (originalColor == "#00000000".toColorInt()) {
+            val newColor = "#3F000000".toColorInt()
 
             val backgroundColorAnimator = ValueAnimator.ofObject(ArgbEvaluator(), originalColor, newColor)
             backgroundColorAnimator.addUpdateListener { animator ->
@@ -60,8 +60,8 @@ class Animations (context: Context) {
         val newColor = sharedPreferenceManager.getBgColor()
 
         // Only animate darkness onto the transparent background
-        if (newColor == Color.parseColor("#00000000")) {
-            val originalColor = Color.parseColor("#3F000000")
+        if (newColor == "#00000000".toColorInt()) {
+            val originalColor = "#3F000000".toColorInt()
 
             val backgroundColorAnimator = ValueAnimator.ofObject(ArgbEvaluator(), originalColor, newColor)
             backgroundColorAnimator.addUpdateListener { animator ->
@@ -75,37 +75,39 @@ class Animations (context: Context) {
             return
         }
     }
+
     private fun View.slideInFromBottom() {
         if (visibility != View.VISIBLE) {
-            translationY = height.toFloat()/5
+            translationY = height.toFloat() / 5
             scaleY = 1.2f
             alpha = 0f
             visibility = View.VISIBLE
             val duration = sharedPreferenceManager.getAnimationSpeed()
 
             animate()
-                    .translationY(0f)
-                    .scaleY(1f)
-                    .alpha(1f)
-                    .setDuration(duration)
-                    .setListener(null)
+                .translationY(0f)
+                .scaleY(1f)
+                .alpha(1f)
+                .setDuration(duration)
+                .setListener(null)
         }
     }
 
     private fun View.slideOutToBottom(duration: Long) {
-        if (visibility == View.VISIBLE) {
+        if (isVisible) {
             isInAnim = true
             animate()
                 .translationY(height.toFloat() / 5)
                 .scaleY(1.2f)
                 .alpha(0f)
-                .setDuration(duration/2)
+                .setDuration(duration / 2)
                 .setListener(object : AnimatorListenerAdapter() {
                     override fun onAnimationEnd(animation: Animator) {
                         super.onAnimationEnd(animation)
                         visibility = View.INVISIBLE
                         isInAnim = false
                     }
+
                     override fun onAnimationCancel(animation: Animator) {
                         super.onAnimationCancel(animation)
                         visibility = View.INVISIBLE
@@ -118,7 +120,7 @@ class Animations (context: Context) {
     private fun View.fadeIn(duration: Long = sharedPreferenceManager.getAnimationSpeed()) {
         if (visibility != View.VISIBLE) {
             alpha = 0f
-            translationY = -height.toFloat()/100
+            translationY = -height.toFloat() / 100
             visibility = View.VISIBLE
 
             animate()
@@ -130,20 +132,21 @@ class Animations (context: Context) {
     }
 
     private fun View.fadeOut() {
-        if (visibility == View.VISIBLE) {
+        if (isVisible) {
             isInAnim = true
             val duration = sharedPreferenceManager.getAnimationSpeed()
 
             animate()
                 .alpha(0f)
-                .translationY(-height.toFloat()/100)
-                .setDuration(duration/2)
+                .translationY(-height.toFloat() / 100)
+                .setDuration(duration / 2)
                 .setListener(object : AnimatorListenerAdapter() {
                     override fun onAnimationEnd(animation: Animator) {
                         super.onAnimationEnd(animation)
                         visibility = View.INVISIBLE
                         isInAnim = false
                     }
+
                     override fun onAnimationCancel(animation: Animator) {
                         super.onAnimationCancel(animation)
                         visibility = View.INVISIBLE

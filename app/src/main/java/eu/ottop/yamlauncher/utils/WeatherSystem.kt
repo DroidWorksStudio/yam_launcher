@@ -5,6 +5,8 @@ import android.content.Context
 import android.content.pm.PackageManager
 import android.location.Location
 import android.location.LocationManager
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.core.content.ContextCompat
 import eu.ottop.yamlauncher.MainActivity
 import eu.ottop.yamlauncher.R
@@ -21,7 +23,8 @@ class WeatherSystem(private val context: Context) {
     private val sharedPreferenceManager = SharedPreferenceManager(context)
     private val stringUtils = StringUtils()
 
-    suspend fun setGpsLocation(activity: MainActivity) {
+    @RequiresApi(Build.VERSION_CODES.R)
+    fun setGpsLocation(activity: MainActivity) {
 
         val locationManager = context.getSystemService(Context.LOCATION_SERVICE) as LocationManager
 
@@ -60,13 +63,13 @@ class WeatherSystem(private val context: Context) {
                     }
                 }
             }
-        } catch(_: Exception) {
+        } catch (_: Exception) {
             return
         }
     }
 
     // Run within Dispatchers.IO from the outside (doesn't seem to refresh properly otherwise)
-    fun getSearchedLocations(searchTerm: String?) : MutableList<Map<String, String>> {
+    fun getSearchedLocations(searchTerm: String?): MutableList<Map<String, String>> {
         val foundLocations = mutableListOf<Map<String, String>>()
 
         val url = URL("https://geocoding-api.open-meteo.com/v1/search?name=$searchTerm&count=50&language=en&format=json")
@@ -81,23 +84,25 @@ class WeatherSystem(private val context: Context) {
                     for (i in 0 until resultArray.length()) {
                         val resultObject: JSONObject = resultArray.getJSONObject(i)
 
-                        foundLocations.add(mapOf(
-                            "name" to resultObject.getString("name"),
-                            "latitude" to resultObject.getDouble("latitude").toString(),
-                            "longitude" to resultObject.getDouble("longitude").toString(),
-                            "country" to resultObject.optString("country", resultObject.optString("country_code","")),
-                            "region" to stringUtils.addEndTextIfNotEmpty(resultObject.optString("admin2", resultObject.optString("admin1",resultObject.optString("admin3",""))), ", ")
-                        ))
+                        foundLocations.add(
+                            mapOf(
+                                "name" to resultObject.getString("name"),
+                                "latitude" to resultObject.getDouble("latitude").toString(),
+                                "longitude" to resultObject.getDouble("longitude").toString(),
+                                "country" to resultObject.optString("country", resultObject.optString("country_code", "")),
+                                "region" to stringUtils.addEndTextIfNotEmpty(resultObject.optString("admin2", resultObject.optString("admin1", resultObject.optString("admin3", ""))), ", ")
+                            )
+                        )
                     }
                 }
-            }catch (_: Exception){
+            } catch (_: Exception) {
             }
         }
         return foundLocations
     }
 
     // Run with Dispatchers.IO from the outside
-    fun getTemp() : String {
+    fun getTemp(): String {
 
         val tempUnits = sharedPreferenceManager.getTempUnits()
         var currentWeather = ""
@@ -148,8 +153,10 @@ class WeatherSystem(private val context: Context) {
 
                         }
 
-                    } catch(_: Exception) {}
-                }}
+                    } catch (_: Exception) {
+                    }
+                }
+            }
         }
 
         return when (tempUnits) {

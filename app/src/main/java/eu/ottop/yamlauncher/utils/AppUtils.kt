@@ -26,7 +26,7 @@ class AppUtils(private val context: Context, private val launcherApps: LauncherA
                     if ((!sharedPreferenceManager.isAppHidden( // Only include the app if it isn't set as hidden or in shortcut selection with the appropriate option enabled
                             app.componentName.flattenToString(),
                             i
-                        ) or showApps)&& app.applicationInfo.packageName != context.applicationInfo.packageName // Hide the launcher itself
+                        ) or showApps) && app.applicationInfo.packageName != context.applicationInfo.packageName // Hide the launcher itself
                     ) {
                         allApps.add(Triple(app, launcherApps.profiles[i], i)) // The i variable gets used to determine whether an app is in the personal profile or work profile
                     }
@@ -38,11 +38,11 @@ class AppUtils(private val context: Context, private val launcherApps: LauncherA
                 compareBy<Triple<LauncherActivityInfo, UserHandle, Int>> {
                     !sharedPreferenceManager.isAppPinned(it.first.componentName.flattenToString(), it.third) // This displays the pinned apps for some reason.
                 }.thenBy {
-                sharedPreferenceManager.getAppName(
-                    it.first.componentName.flattenToString(),
-                    it.third,
-                    it.first.label
-                ).toString().lowercase()
+                    sharedPreferenceManager.getAppName(
+                        it.first.componentName.flattenToString(),
+                        it.third,
+                        it.first.label
+                    ).toString().lowercase()
                 }
             )
         }
@@ -55,22 +55,22 @@ class AppUtils(private val context: Context, private val launcherApps: LauncherA
         val allApps = mutableListOf<Triple<LauncherActivityInfo, UserHandle, Int>>()
         var sortedApps = listOf<Triple<LauncherActivityInfo, UserHandle, Int>>()
         withContext(Dispatchers.Default) {
-        for (i in launcherApps.profiles.indices) {
-            launcherApps.getActivityList(null, launcherApps.profiles[i]).forEach { app ->
-                if (sharedPreferenceManager.isAppHidden(app.componentName.flattenToString(), i)) {
-                    allApps.add(Triple(app, launcherApps.profiles[i], i))
+            for (i in launcherApps.profiles.indices) {
+                launcherApps.getActivityList(null, launcherApps.profiles[i]).forEach { app ->
+                    if (sharedPreferenceManager.isAppHidden(app.componentName.flattenToString(), i)) {
+                        allApps.add(Triple(app, launcherApps.profiles[i], i))
+                    }
                 }
             }
-        }
 
-        //Sort apps by name
-        sortedApps = allApps.sortedBy {
-        sharedPreferenceManager.getAppName(
-            it.first.componentName.flattenToString(),
-            it.third,
-            it.first.label
-        ).toString().lowercase()
-        }
+            //Sort apps by name
+            sortedApps = allApps.sortedBy {
+                sharedPreferenceManager.getAppName(
+                    it.first.componentName.flattenToString(),
+                    it.third,
+                    it.first.label
+                ).toString().lowercase()
+            }
         }
         return sortedApps
     }
@@ -87,7 +87,7 @@ class AppUtils(private val context: Context, private val launcherApps: LauncherA
     }
 
     private fun startApp(componentName: ComponentName, userHandle: UserHandle) {
-        launcherApps.startMainActivity(componentName,  userHandle, null, null)
+        launcherApps.startMainActivity(componentName, userHandle, null, null)
     }
 
     fun launchApp(componentName: ComponentName, userHandle: UserHandle) {

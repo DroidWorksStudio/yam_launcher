@@ -6,6 +6,7 @@ import android.content.pm.LauncherActivityInfo
 import android.content.pm.LauncherApps
 import android.graphics.BlendMode
 import android.graphics.BlendModeColorFilter
+import android.os.Build
 import android.os.UserHandle
 import android.view.LayoutInflater
 import android.view.View
@@ -13,6 +14,7 @@ import android.view.ViewGroup
 import android.widget.FrameLayout
 import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.annotation.RequiresApi
 import androidx.core.content.res.ResourcesCompat
 import androidx.core.view.ViewCompat
 import androidx.recyclerview.widget.RecyclerView
@@ -34,14 +36,14 @@ class AppMenuAdapter(
 ) :
     RecyclerView.Adapter<AppMenuAdapter.AppViewHolder>() {
 
-        // If the menu is opened to select shortcuts, the below variable is set
-        var shortcutIndex: Int = 0
-        var shortcutTextView: TextView? = null
+    // If the menu is opened to select shortcuts, the below variable is set
+    var shortcutIndex: Int = 0
+    var shortcutTextView: TextView? = null
 
-        private val sharedPreferenceManager = SharedPreferenceManager(activity)
-        private val uiUtils = UIUtils(activity)
-        private val appUtils = AppUtils(activity, launcherApps)
-        private var appActionMenu = AppActionMenu(activity, binding, launcherApps, activity.findViewById(R.id.searchView))
+    private val sharedPreferenceManager = SharedPreferenceManager(activity)
+    private val uiUtils = UIUtils(activity)
+    private val appUtils = AppUtils(activity, launcherApps)
+    private var appActionMenu = AppActionMenu(activity, binding, launcherApps, activity.findViewById(R.id.searchView))
 
     interface OnItemClickListener {
         fun onItemClick(appInfo: LauncherActivityInfo, userHandle: UserHandle)
@@ -67,16 +69,15 @@ class AppMenuAdapter(
 
         init {
             textView.setOnClickListener {
-                    val position = bindingAdapterPosition
-                    val app = apps[position].first
+                val position = bindingAdapterPosition
+                val app = apps[position].first
 
-                    // If opened to select a shortcut, set the shortcut instead of launching the app
-                    if (shortcutTextView != null) {
-                        shortcutListener.onShortcut(app, apps[position].second, textView, apps[position].third, shortcutTextView!!, shortcutIndex)
-                    }
-                    else {
-                        itemClickListener.onItemClick(app, apps[position].second)
-                    }
+                // If opened to select a shortcut, set the shortcut instead of launching the app
+                if (shortcutTextView != null) {
+                    shortcutListener.onShortcut(app, apps[position].second, textView, apps[position].third, shortcutTextView!!, shortcutIndex)
+                } else {
+                    itemClickListener.onItemClick(app, apps[position].second)
+                }
             }
 
             textView.setOnLongClickListener {
@@ -90,12 +91,13 @@ class AppMenuAdapter(
                     return@setOnLongClickListener true
                 } else {
 
-                itemLongClickListener.onItemLongClick(
-                    textView,
-                    actionMenuLayout
-                )
-                return@setOnLongClickListener true
-            }}
+                    itemLongClickListener.onItemLongClick(
+                        textView,
+                        actionMenuLayout
+                    )
+                    return@setOnLongClickListener true
+                }
+            }
 
         }
     }
@@ -105,7 +107,8 @@ class AppMenuAdapter(
             .inflate(R.layout.app_item_layout, parent, false)
         return AppViewHolder(view)
     }
-
+    
+    @RequiresApi(Build.VERSION_CODES.Q)
     override fun onBindViewHolder(holder: AppViewHolder, position: Int) {
         holder.actionMenuLayout.visibility = View.INVISIBLE
         holder.editView.visibility = View.INVISIBLE
@@ -113,21 +116,19 @@ class AppMenuAdapter(
 
         if (sharedPreferenceManager.isAppPinned(app.first.componentName.flattenToString(), app.third)) {
             if (app.third != 0) {
-                holder.textView.setCompoundDrawablesWithIntrinsicBounds(ResourcesCompat.getDrawable(activity.resources, R.drawable.keep_filled_15px, null),null, ResourcesCompat.getDrawable(activity.resources, R.drawable.ic_empty, null),null)
-            }
-            else {
-                holder.textView.setCompoundDrawablesWithIntrinsicBounds(ResourcesCompat.getDrawable(activity.resources, R.drawable.keep_15px, null),null,ResourcesCompat.getDrawable(activity.resources, R.drawable.ic_empty, null),null)
+                holder.textView.setCompoundDrawablesWithIntrinsicBounds(ResourcesCompat.getDrawable(activity.resources, R.drawable.keep_filled_15px, null), null, ResourcesCompat.getDrawable(activity.resources, R.drawable.ic_empty, null), null)
+            } else {
+                holder.textView.setCompoundDrawablesWithIntrinsicBounds(ResourcesCompat.getDrawable(activity.resources, R.drawable.keep_15px, null), null, ResourcesCompat.getDrawable(activity.resources, R.drawable.ic_empty, null), null)
             }
             holder.textView.compoundDrawables[0].colorFilter = BlendModeColorFilter(sharedPreferenceManager.getTextColor(), BlendMode.SRC_ATOP)
         }
         // Set initial drawables
         else if (app.third != 0) {
-            holder.textView.setCompoundDrawablesWithIntrinsicBounds(ResourcesCompat.getDrawable(activity.resources, R.drawable.ic_work_app, null),null, ResourcesCompat.getDrawable(activity.resources, R.drawable.ic_empty, null),null)
+            holder.textView.setCompoundDrawablesWithIntrinsicBounds(ResourcesCompat.getDrawable(activity.resources, R.drawable.ic_work_app, null), null, ResourcesCompat.getDrawable(activity.resources, R.drawable.ic_empty, null), null)
             holder.textView.compoundDrawables[0].colorFilter =
                 BlendModeColorFilter(sharedPreferenceManager.getTextColor(), BlendMode.SRC_ATOP)
-        }
-        else {
-            holder.textView.setCompoundDrawablesWithIntrinsicBounds(ResourcesCompat.getDrawable(activity.resources, R.drawable.ic_empty, null),null,ResourcesCompat.getDrawable(activity.resources, R.drawable.ic_empty, null),null)
+        } else {
+            holder.textView.setCompoundDrawablesWithIntrinsicBounds(ResourcesCompat.getDrawable(activity.resources, R.drawable.ic_empty, null), null, ResourcesCompat.getDrawable(activity.resources, R.drawable.ic_empty, null), null)
         }
 
         uiUtils.setAppAlignment(holder.textView, holder.editText)
@@ -163,8 +164,7 @@ class AppMenuAdapter(
                 holder.actionMenuLayout.findViewById<TextView>(R.id.uninstall).visibility =
                     View.VISIBLE
             }
-        }
-        else {
+        } else {
             holder.textView.text = activity.getString(R.string.removing)
         }
 

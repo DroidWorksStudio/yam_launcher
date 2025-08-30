@@ -15,8 +15,8 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.textfield.TextInputEditText
-import eu.ottop.yamlauncher.utils.AppMenuEdgeFactory
 import eu.ottop.yamlauncher.R
+import eu.ottop.yamlauncher.utils.AppMenuEdgeFactory
 import eu.ottop.yamlauncher.utils.AppUtils
 import eu.ottop.yamlauncher.utils.StringUtils
 import eu.ottop.yamlauncher.utils.UIUtils
@@ -114,18 +114,19 @@ class GestureAppsFragment(private val direction: String) : Fragment(),
         if (cleanQuery.isNullOrEmpty()) {
             newFilteredApps.addAll(updatedApps)
         } else {
-            val fuzzyPattern = if(sharedPreferenceManager.isFuzzySearchEnabled()) {
+            val fuzzyPattern = if (sharedPreferenceManager.isFuzzySearchEnabled()) {
                 stringUtils.getFuzzyPattern(cleanQuery)
-            }
-            else {
+            } else {
                 null
             }
             updatedApps.forEach {
-                val cleanItemText = stringUtils.cleanString(sharedPreferenceManager.getAppName(
-                    it.first.componentName.flattenToString(),
-                    it.third,
-                    it.first.label
-                ).toString())
+                val cleanItemText = stringUtils.cleanString(
+                    sharedPreferenceManager.getAppName(
+                        it.first.componentName.flattenToString(),
+                        it.third,
+                        it.first.label
+                    ).toString()
+                )
                 if (cleanItemText != null) {
                     if (
                         (fuzzyPattern != null && cleanItemText.contains(fuzzyPattern)) ||
@@ -166,11 +167,13 @@ class GestureAppsFragment(private val direction: String) : Fragment(),
 
 
     override fun onItemClick(appInfo: LauncherActivityInfo, profile: Int) {
-        showConfirmationDialog(appInfo, sharedPreferenceManager.getAppName(
-            appInfo.componentName.flattenToString(),
-            profile,
-            appInfo.label
-        ).toString(), profile)
+        showConfirmationDialog(
+            appInfo, sharedPreferenceManager.getAppName(
+                appInfo.componentName.flattenToString(),
+                profile,
+                appInfo.label
+            ).toString(), profile
+        )
     }
 
     override fun getTitle(): String {

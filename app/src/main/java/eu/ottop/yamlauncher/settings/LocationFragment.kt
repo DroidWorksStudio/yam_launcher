@@ -13,11 +13,11 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.textfield.TextInputEditText
-import eu.ottop.yamlauncher.utils.AppMenuEdgeFactory
 import eu.ottop.yamlauncher.R
-import eu.ottop.yamlauncher.utils.WeatherSystem
+import eu.ottop.yamlauncher.utils.AppMenuEdgeFactory
 import eu.ottop.yamlauncher.utils.StringUtils
 import eu.ottop.yamlauncher.utils.UIUtils
+import eu.ottop.yamlauncher.utils.WeatherSystem
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -86,7 +86,7 @@ class LocationFragment : Fragment(), LocationListAdapter.OnItemClickListener, Ti
 
             override fun afterTextChanged(s: Editable?) {
                 // Filtering is not needed since we are creating a list with data pulled from the Open-Meteo api instead of searching an existing list
-                lifecycleScope.launch(Dispatchers.IO){
+                lifecycleScope.launch(Dispatchers.IO) {
                     val locations = weatherSystem.getSearchedLocations(
                         searchView.text.toString()
                     )

@@ -21,9 +21,9 @@ class HiddenAppsAdapter(
 ) :
     RecyclerView.Adapter<HiddenAppsAdapter.AppViewHolder>() {
 
-        private val sharedPreferenceManager = SharedPreferenceManager(context)
-        private val uiUtils = UIUtils(context)
-
+    private val sharedPreferenceManager = SharedPreferenceManager(context)
+    private val uiUtils = UIUtils(context)
+    
     interface OnItemClickListener {
         fun onItemClick(appInfo: LauncherActivityInfo, profile: Int)
     }
@@ -53,12 +53,19 @@ class HiddenAppsAdapter(
         val app = apps[position]
 
         if (app.third != 0) {
-            holder.textView.setCompoundDrawablesWithIntrinsicBounds(ResourcesCompat.getDrawable(context.resources,
-                R.drawable.ic_work_app, null),null,null,null)
-        }
-        else {
-            holder.textView.setCompoundDrawablesWithIntrinsicBounds(ResourcesCompat.getDrawable(context.resources,
-                R.drawable.ic_empty, null),null,null,null)
+            holder.textView.setCompoundDrawablesWithIntrinsicBounds(
+                ResourcesCompat.getDrawable(
+                    context.resources,
+                    R.drawable.ic_work_app, null
+                ), null, null, null
+            )
+        } else {
+            holder.textView.setCompoundDrawablesWithIntrinsicBounds(
+                ResourcesCompat.getDrawable(
+                    context.resources,
+                    R.drawable.ic_empty, null
+                ), null, null, null
+            )
         }
 
         uiUtils.setAppAlignment(holder.textView)

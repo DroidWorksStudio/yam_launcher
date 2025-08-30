@@ -20,11 +20,11 @@ class ContactsAdapter(
 ) :
     RecyclerView.Adapter<ContactsAdapter.AppViewHolder>() {
 
-        var shortcutIndex: Int = 0
-        var shortcutTextView: TextView? = null
+    var shortcutIndex: Int = 0
+    var shortcutTextView: TextView? = null
 
-        private val uiUtils = UIUtils(activity)
-        private val sharedPreferenceManager = SharedPreferenceManager(activity)
+    private val uiUtils = UIUtils(activity)
+    private val sharedPreferenceManager = SharedPreferenceManager(activity)
 
     interface OnContactClickListener {
         fun onContactClick(contactId: Int)
@@ -62,7 +62,8 @@ class ContactsAdapter(
     override fun onBindViewHolder(holder: AppViewHolder, position: Int) {
         val contact = contacts[position]
         holder.textView.setCompoundDrawablesWithIntrinsicBounds(
-            ResourcesCompat.getDrawable(activity.resources, R.drawable.ic_empty, null),null, ResourcesCompat.getDrawable(activity.resources, R.drawable.ic_empty, null),null)
+            ResourcesCompat.getDrawable(activity.resources, R.drawable.ic_empty, null), null, ResourcesCompat.getDrawable(activity.resources, R.drawable.ic_empty, null), null
+        )
 
         uiUtils.setAppAlignment(holder.textView)
 

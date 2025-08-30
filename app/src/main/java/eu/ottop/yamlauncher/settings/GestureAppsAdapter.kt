@@ -52,12 +52,19 @@ class GestureAppsAdapter(
         val app = apps[position]
 
         if (app.third != 0) {
-            holder.textView.setCompoundDrawablesWithIntrinsicBounds(ResourcesCompat.getDrawable(context.resources,
-                R.drawable.ic_work_app, null),null,null,null)
-        }
-        else {
-            holder.textView.setCompoundDrawablesWithIntrinsicBounds(ResourcesCompat.getDrawable(context.resources,
-                R.drawable.ic_empty, null),null,null,null)
+            holder.textView.setCompoundDrawablesWithIntrinsicBounds(
+                ResourcesCompat.getDrawable(
+                    context.resources,
+                    R.drawable.ic_work_app, null
+                ), null, null, null
+            )
+        } else {
+            holder.textView.setCompoundDrawablesWithIntrinsicBounds(
+                ResourcesCompat.getDrawable(
+                    context.resources,
+                    R.drawable.ic_empty, null
+                ), null, null, null
+            )
         }
 
         uiUtils.setAppAlignment(holder.textView)

@@ -81,7 +81,7 @@ class MainActivity : AppCompatActivity(), SharedPreferences.OnSharedPreferenceCh
     private lateinit var weatherSystem: WeatherSystem
     private lateinit var appUtils: AppUtils
     private lateinit var biometricUtils: BiometricUtils
-      
+
     private val stringUtils = StringUtils()
     private val permissionUtils = PermissionUtils()
     private lateinit var uiUtils: UIUtils
@@ -139,6 +139,7 @@ class MainActivity : AppCompatActivity(), SharedPreferences.OnSharedPreferenceCh
 
     private val handler = Handler(Looper.getMainLooper())
 
+    @RequiresApi(Build.VERSION_CODES.R)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -441,6 +442,7 @@ class MainActivity : AppCompatActivity(), SharedPreferences.OnSharedPreferenceCh
         }
     }
 
+    @RequiresApi(Build.VERSION_CODES.R)
     private fun setPreferences() {
         uiUtils.setBackground(window)
 
@@ -623,6 +625,7 @@ class MainActivity : AppCompatActivity(), SharedPreferences.OnSharedPreferenceCh
     }
 
     // Only reload items that have had preferences changed
+    @RequiresApi(Build.VERSION_CODES.R)
     @SuppressLint("UseKtx")
     override fun onSharedPreferenceChanged(preferences: SharedPreferences?, key: String?) {
         if (preferences != null) {
@@ -869,6 +872,7 @@ class MainActivity : AppCompatActivity(), SharedPreferences.OnSharedPreferenceCh
         }
     }
 
+    @RequiresApi(Build.VERSION_CODES.R)
     private suspend fun updateWeather() {
         withContext(Dispatchers.IO) {
             if (sharedPreferenceManager.isWeatherEnabled()) {
@@ -1156,7 +1160,7 @@ class MainActivity : AppCompatActivity(), SharedPreferences.OnSharedPreferenceCh
         appMenuLinearLayoutManager.setScrollEnabled(true)
         appRecycler.layoutManager = appMenuLinearLayoutManager
     }
-    
+
     // On home key or swipe, return to home screen
     override fun onNewIntent(intent: Intent) {
         super.onNewIntent(intent)
@@ -1196,6 +1200,7 @@ class MainActivity : AppCompatActivity(), SharedPreferences.OnSharedPreferenceCh
         appUtils.launchApp(appInfo.componentName, userHandle)
     }
 
+    @RequiresApi(Build.VERSION_CODES.Q)
     override fun onShortcut(
         appInfo: LauncherActivityInfo,
         userHandle: UserHandle,

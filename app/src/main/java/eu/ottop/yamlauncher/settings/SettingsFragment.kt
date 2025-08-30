@@ -39,61 +39,72 @@ class SettingsFragment : PreferenceFragmentCompat(), TitleProvider {
                 if (intent.resolveActivity(requireContext().packageManager) != null) {
                     startActivity(intent)
                 } else {
-                    Toast.makeText(requireContext(),
-                        getString(R.string.unable_to_launch_settings), Toast.LENGTH_SHORT).show()
+                    Toast.makeText(
+                        requireContext(),
+                        getString(R.string.unable_to_launch_settings), Toast.LENGTH_SHORT
+                    ).show()
                 }
-                true }
+                true
+            }
 
         uiSettings?.onPreferenceClickListener =
             Preference.OnPreferenceClickListener {
                 uiUtils.switchFragment(requireActivity(), UISettingsFragment())
-                true }
+                true
+            }
 
         homeSettings?.onPreferenceClickListener =
             Preference.OnPreferenceClickListener {
                 uiUtils.switchFragment(requireActivity(), HomeSettingsFragment())
-                true }
+                true
+            }
 
         appMenuSettings?.onPreferenceClickListener =
             Preference.OnPreferenceClickListener {
                 uiUtils.switchFragment(requireActivity(), AppMenuSettingsFragment())
-                true }
+                true
+            }
 
         hiddenPref?.onPreferenceClickListener =
             Preference.OnPreferenceClickListener {
                 uiUtils.switchFragment(requireActivity(), HiddenAppsFragment())
-                true }
+                true
+            }
 
         backupPref?.onPreferenceClickListener =
             Preference.OnPreferenceClickListener {
                 (requireActivity() as SettingsActivity).createBackup()
-                true }
+                true
+            }
 
         restorePref?.onPreferenceClickListener =
             Preference.OnPreferenceClickListener {
                 (requireActivity() as SettingsActivity).restoreBackup()
-                true }
+                true
+            }
 
         aboutPref?.onPreferenceClickListener =
             Preference.OnPreferenceClickListener {
                 uiUtils.switchFragment(requireActivity(), AboutFragment())
-                true }
+                true
+            }
 
         restartPref?.onPreferenceClickListener =
             Preference.OnPreferenceClickListener {
                 (requireActivity() as SettingsActivity).restartApp()
-                true }
+                true
+            }
 
         resetPref?.onPreferenceClickListener =
             Preference.OnPreferenceClickListener {
                 sharedPreferenceManager.resetAllPreferences()
-                true }
+                true
+            }
     }
 
     override fun getTitle(): String {
         return getString(R.string.settings_title)
     }
-
 
 
 }

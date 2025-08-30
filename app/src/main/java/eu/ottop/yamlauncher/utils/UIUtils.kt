@@ -7,6 +7,7 @@ import android.graphics.BlendModeColorFilter
 import android.graphics.Color
 import android.graphics.Rect
 import android.graphics.Typeface
+import android.os.Build
 import android.util.TypedValue
 import android.view.Gravity
 import android.view.View
@@ -21,8 +22,10 @@ import android.widget.LinearLayout
 import android.widget.Space
 import android.widget.TextClock
 import android.widget.TextView
+import androidx.annotation.RequiresApi
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.res.ResourcesCompat
+import androidx.core.content.withStyledAttributes
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.children
@@ -95,6 +98,7 @@ class UIUtils(private val context: Context) {
         view.setColorFilter(sharedPreferenceManager.getTextColor())
     }
 
+    @RequiresApi(Build.VERSION_CODES.Q)
     fun setTextColors(view: View) {
         val color = sharedPreferenceManager.getTextColor()
         when {
@@ -103,6 +107,7 @@ class UIUtils(private val context: Context) {
                     setTextColors(child)
                 }
             }
+
             hasMethod(view, "setTextColor") -> {
                 (view as TextView).setTextColor(color)
                 view.compoundDrawables[0]?.colorFilter =
@@ -110,12 +115,14 @@ class UIUtils(private val context: Context) {
                 view.compoundDrawables[2]?.colorFilter =
                     BlendModeColorFilter(sharedPreferenceManager.getTextColor(), BlendMode.SRC_ATOP)
             }
+
             else -> {
                 view.setBackgroundColor(color)
             }
         }
     }
 
+    @RequiresApi(Build.VERSION_CODES.R)
     fun setStatusBarColor(window: Window) {
         val insetController = window.insetsController
         when (sharedPreferenceManager.getTextString()) {
@@ -140,6 +147,7 @@ class UIUtils(private val context: Context) {
         }
     }
 
+    @RequiresApi(Build.VERSION_CODES.Q)
     fun setMenuItemColors(view: TextView, alphaHex: String = "FF") {
         val color = sharedPreferenceManager.getTextColor()
         view.setTextColor(setAlpha(color, alphaHex))
@@ -159,6 +167,7 @@ class UIUtils(private val context: Context) {
                     setTextFont(child)
                 }
             }
+
             hasMethod(view, "setTextAppearance") -> {
                 setFont(view as TextView)
             }
@@ -170,9 +179,9 @@ class UIUtils(private val context: Context) {
         val style = sharedPreferenceManager.getTextStyle()
 
         if (font == "system") {
-            val typedArray = context.obtainStyledAttributes(android.R.style.TextAppearance_DeviceDefault, intArrayOf(android.R.attr.fontFamily))
-            font = typedArray.getString(0)
-            typedArray.recycle()
+            context.withStyledAttributes(android.R.style.TextAppearance_DeviceDefault, intArrayOf(android.R.attr.fontFamily)) {
+                font = getString(0)
+            }
         }
 
         val fontId = FontMap.fonts[font]
@@ -187,12 +196,15 @@ class UIUtils(private val context: Context) {
             "normal" -> {
                 view.setTypeface(Typeface.create(newFont, Typeface.NORMAL))
             }
+
             "bold" -> {
                 view.setTypeface(Typeface.create(newFont, Typeface.BOLD))
             }
+
             "italic" -> {
                 view.setTypeface(Typeface.create(newFont, Typeface.ITALIC))
             }
+
             "bold-italic" -> {
                 view.setTypeface(Typeface.create(newFont, Typeface.BOLD_ITALIC))
             }
@@ -226,6 +238,7 @@ class UIUtils(private val context: Context) {
             true -> {
                 View.VISIBLE
             }
+
             false -> {
                 View.GONE
             }
@@ -295,10 +308,12 @@ class UIUtils(private val context: Context) {
                 topLayoutParams.weight = 0.1F
                 bottomLayoutParams.weight = 0.42F
             }
+
             "center" -> {
                 topLayoutParams.weight = 0.22F
                 bottomLayoutParams.weight = 0.3F
             }
+
             "bottom" -> {
                 topLayoutParams.weight = 0.42F
                 bottomLayoutParams.weight = 0.1F
@@ -309,7 +324,7 @@ class UIUtils(private val context: Context) {
         bottomSpace.layoutParams = bottomLayoutParams
     }
 
-    fun setDrawables(textView: TextView, alignment: String?, alignments: Array<String> = arrayOf("left","center","right")) {
+    fun setDrawables(textView: TextView, alignment: String?, alignments: Array<String> = arrayOf("left", "center", "right")) {
         try {
             when (alignment) {
                 alignments[0] -> {
@@ -339,7 +354,8 @@ class UIUtils(private val context: Context) {
                     )
                 }
             }
-        } catch (_: Exception) {}
+        } catch (_: Exception) {
+        }
     }
 
     fun setAppAlignment(
@@ -369,21 +385,22 @@ class UIUtils(private val context: Context) {
     fun setMenuTitleAlignment(menuTitle: TextView) {
         val alignment = sharedPreferenceManager.getAppAlignment()
         setTextGravity(menuTitle, alignment)
-        setDrawables(menuTitle, alignment, arrayOf("right","center","left"))
+        setDrawables(menuTitle, alignment, arrayOf("right", "center", "left"))
     }
 
     private fun setTextAlignment(view: TextView, alignment: String?) {
         try {
             view.textAlignment = when (alignment) {
-            "left" -> View.TEXT_ALIGNMENT_VIEW_START
+                "left" -> View.TEXT_ALIGNMENT_VIEW_START
 
-            "center" -> View.TEXT_ALIGNMENT_CENTER
+                "center" -> View.TEXT_ALIGNMENT_CENTER
 
-            "right" -> View.TEXT_ALIGNMENT_VIEW_END
+                "right" -> View.TEXT_ALIGNMENT_VIEW_END
 
-            else -> View.TEXT_ALIGNMENT_VIEW_START
+                else -> View.TEXT_ALIGNMENT_VIEW_START
             }
-        } catch (_: Exception) {}
+        } catch (_: Exception) {
+        }
     }
 
     private fun setTextGravity(view: TextView, alignment: String?) {
@@ -397,7 +414,8 @@ class UIUtils(private val context: Context) {
 
                 else -> Gravity.CENTER_VERTICAL or Gravity.START
             }
-        } catch (_: Exception) {}
+        } catch (_: Exception) {
+        }
     }
 
     // Size
@@ -477,7 +495,8 @@ class UIUtils(private val context: Context) {
                     )
                 }
             }
-        } catch(_: Exception) {}
+        } catch (_: Exception) {
+        }
     }
 
     fun setAppSize(
@@ -522,7 +541,8 @@ class UIUtils(private val context: Context) {
                     0F
                 }
             }
-        } catch (_: Exception) {}
+        } catch (_: Exception) {
+        }
     }
 
     // Spacing
@@ -567,14 +587,14 @@ class UIUtils(private val context: Context) {
     }
 
     // Status bar visibility
+    @RequiresApi(Build.VERSION_CODES.R)
     fun setStatusBar(window: Window) {
         val windowInsetsController = window.insetsController
 
         windowInsetsController?.let {
             if (sharedPreferenceManager.isBarVisible()) {
                 it.show(WindowInsets.Type.statusBars())
-            }
-            else {
+            } else {
                 it.hide(WindowInsets.Type.statusBars())
                 it.systemBarsBehavior =
                     WindowInsetsController.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE

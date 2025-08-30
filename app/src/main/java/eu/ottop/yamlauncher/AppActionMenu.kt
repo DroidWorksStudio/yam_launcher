@@ -5,7 +5,6 @@ import android.content.Intent
 import android.content.pm.ApplicationInfo
 import android.content.pm.LauncherActivityInfo
 import android.content.pm.LauncherApps
-import android.net.Uri
 import android.os.Handler
 import android.os.Looper
 import android.os.UserHandle
@@ -18,6 +17,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.widget.AppCompatButton
 import androidx.core.content.ContextCompat.getDrawable
+import androidx.core.net.toUri
 import androidx.core.view.ViewCompat
 import androidx.lifecycle.lifecycleScope
 import eu.ottop.yamlauncher.databinding.ActivityMainBinding
@@ -37,7 +37,7 @@ class AppActionMenu(private val activity: MainActivity, private val binding: Act
         appActivity: LauncherActivityInfo,
         userHandle: UserHandle,
         workProfile: Int
-    ){
+    ) {
         val pinButton = actionMenu.findViewById<TextView>(R.id.pin)
         val infoButton = actionMenu.findViewById<TextView>(R.id.info)
         val uninstallButton = actionMenu.findViewById<TextView>(R.id.uninstall)
@@ -69,7 +69,9 @@ class AppActionMenu(private val activity: MainActivity, private val binding: Act
                 animations.fadeViewOut(actionMenu)
                 textView.visibility = View.VISIBLE
             }
-        } else {pinButton.visibility = View.GONE}
+        } else {
+            pinButton.visibility = View.GONE
+        }
 
         if (enableInfo) {
             infoButton.visibility = View.VISIBLE
@@ -87,7 +89,9 @@ class AppActionMenu(private val activity: MainActivity, private val binding: Act
                 animations.fadeViewOut(actionMenu)
                 textView.visibility = View.VISIBLE
             }
-        } else {infoButton.visibility = View.GONE}
+        } else {
+            infoButton.visibility = View.GONE
+        }
 
         if (enableUninstall) {
             if (appActivity.applicationInfo.flags and ApplicationInfo.FLAG_SYSTEM == 0) {
@@ -107,7 +111,9 @@ class AppActionMenu(private val activity: MainActivity, private val binding: Act
                 animations.fadeViewOut(actionMenu)
                 textView.visibility = View.VISIBLE
             }
-        } else {uninstallButton.visibility = View.GONE}
+        } else {
+            uninstallButton.visibility = View.GONE
+        }
 
         if (enableRename) {
             renameButton.visibility = View.VISIBLE
@@ -123,7 +129,9 @@ class AppActionMenu(private val activity: MainActivity, private val binding: Act
             renameButton.setOnClickListener {
                 renameApp(textView, editLayout, actionMenu, appActivity, userHandle, workProfile)
             }
-        } else {renameButton.visibility = View.GONE}
+        } else {
+            renameButton.visibility = View.GONE
+        }
 
         if (enableHide) {
             hideButton.visibility = View.VISIBLE
@@ -139,7 +147,9 @@ class AppActionMenu(private val activity: MainActivity, private val binding: Act
             hideButton.setOnClickListener {
                 hideApp(editLayout, textView, actionMenu, appActivity, workProfile)
             }
-        } else {hideButton.visibility = View.GONE}
+        } else {
+            hideButton.visibility = View.GONE
+        }
 
         if (enableClose) {
             closeButton.visibility = View.VISIBLE
@@ -148,14 +158,16 @@ class AppActionMenu(private val activity: MainActivity, private val binding: Act
                 animations.fadeViewOut(actionMenu)
                 textView.visibility = View.VISIBLE
             }
-        } else {closeButton.visibility = View.GONE}
+        } else {
+            closeButton.visibility = View.GONE
+        }
     }
 
     private fun setPinState(button: TextView, appActivity: LauncherActivityInfo, workProfile: Int) {
         val isPinned = sharedPreferenceManager.isAppPinned(appActivity.componentName.flattenToString(), workProfile)
         val topDrawable = when (isPinned) {
             true -> getDrawable(activity, R.drawable.keep_off_24px)
-            false -> getDrawable(activity,R.drawable.keep_24px)
+            false -> getDrawable(activity, R.drawable.keep_24px)
         }
 
         button.setCompoundDrawablesWithIntrinsicBounds(null, topDrawable, null, null)
@@ -189,7 +201,7 @@ class AppActionMenu(private val activity: MainActivity, private val binding: Act
 
     private fun uninstallApp(appInfo: ApplicationInfo, userHandle: UserHandle) {
         val intent = Intent(Intent.ACTION_DELETE)
-        intent.data = Uri.parse("package:${appInfo.packageName}")
+        intent.data = "package:${appInfo.packageName}".toUri()
         intent.putExtra(Intent.EXTRA_USER, userHandle)
         activity.startActivity(intent)
         activity.returnAllowed = false
