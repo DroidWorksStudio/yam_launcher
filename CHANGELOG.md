@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
+## [Coming Soon](https://github.com/DroidWorksStudio/yam_launcher/tree/HEAD)
+
+### Implemented Enhancements:
+
+- Add GitHub issue and pull request templates - ([a28f9b9](https://github.com/DroidWorksStudio/yam_launcher/commit/a28f9b9a00597246d29b020c1f3de474253918e1))
+
 ## [1.8.0.1](https://github.com/DroidWorksStudio/yam_launcher/tree/v1.8.0.1) - (30, August 2025)
 
 ### Feature Removal:
