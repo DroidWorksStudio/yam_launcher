@@ -2,7 +2,7 @@
 
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
-## [Coming Soon](https://github.com/DroidWorksStudio/yam_launcher/tree/HEAD)
+## [1.8.0.1](https://github.com/DroidWorksStudio/yam_launcher/tree/v1.8.0.1) - (30, August 2025)
 
 ### Feature Removal:
 
