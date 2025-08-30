@@ -1,37 +1,26 @@
 > [!NOTE]
 > Ottop stopped developing this launcher. Thanks to him for the amazing groundwork! We'll continue supporting this
-project. If you made a issue on the main repo from Ottop, please make one here. We'll only implement features asked for
-by our community.
-
-<p align="center">
-    <img src="metadata/en-US/images/featureGraphic.png" width=100% />
-</p>
+> project. If you made a issue on the main repo from Ottop, please make one here. We'll only implement features asked for
+> by our community.
 
 <div align='center'>
     <p>
-        <img src='https://img.shields.io/badge/Android-SDK_36-BD93F9?style=flat-square&logo=android&logoColor=white'
-            alt="SDK-36">
-        <a href='https://github.com/DroidWorksStudio/yam_launcher/blob/main/LICENSE'><img
-                src='https://img.shields.io/github/license/DroidWorksStudio/yam_launcher?color=BD93F9&style=flat-square'
-                alt="LICENSE"></a>
+        <img src="metadata/en-US/images/featureGraphic.png" width=100% />
+    </p>
+    <p>
+        <img src='https://img.shields.io/badge/Android-SDK_36-BD93F9?style=flat-square&logo=android&logoColor=white' alt="SDK-36">
+        <a href='https://github.com/DroidWorksStudio/yam_launcher/blob/main/LICENSE'><img src='https://img.shields.io/github/license/DroidWorksStudio/yam_launcher?color=BD93F9&style=flat-square' alt="LICENSE"></a>
         <br>
-        <a href='https://github.com/DroidWorksStudio/yam_launcher/releases/latest'><img
-                src='https://img.shields.io/github/downloads/DroidWorksStudio/mLauncher/total?color=50FA7B&style=flat-square'
-                alt="releases"></a>
-        <a href='https://github.com/DroidWorksStudio/yam_launcher/releases/latest'><img
-                src="https://img.shields.io/github/downloads/DroidWorksStudio/mLauncher/latest/total?color=50FA7B&style=flat-square"
-                alt="GitHub Downloads (all assets, latest release)"></a>
+        <a href='https://github.com/DroidWorksStudio/yam_launcher/releases/latest'><img src='https://img.shields.io/github/downloads/DroidWorksStudio/yam_launcher/total?color=50FA7B&style=flat-square&label=Overall&logo=github' alt="releases"></a>
+        <a href='https://github.com/DroidWorksStudio/yam_launcher/releases/latest'><img src="https://img.shields.io/github/downloads/DroidWorksStudio/yam_launcher/latest/total?color=50FA7B&style=flat-square&label=Latest&logo=github" alt="GitHub Downloads (all assets, latest release)"></a>
         <br>
-        <a href='https://apt.izzysoft.de/fdroid/index/apk/eu.ottop.yamlauncher'><img
-                alt="IzzyOnDroid (including pre-releases)"
-                src="https://img.shields.io/endpoint?url=https://apt.izzysoft.de/fdroid/api/v1/shield/eu.ottop.yamlauncher&color=FFB86C&style=flat-square"></a>
-        <a href='https://github.com/DroidWorksStudio/yam_launcher/releases/latest'><img
-                alt="GitHub release (latest by date)"
-                src="https://img.shields.io/github/v/release/DroidWorksStudio/yam_launcher?color=FFB86C&style=flat-square"></a>
+        <a href='https://github.com/DroidWorksStudio/yam_launcher/releases/latest'><img src='https://img.shields.io/endpoint?url=https%3A%2F%2Fplay.cuzi.workers.dev%2Fplay%3Fi%3Deu.ottop.yamlauncher%26gl%3DUK%26hl%3Den%26l%3D%24name%26m%3D%24totalinstalls&color=50FA7B&style=flat-square&label=Google%20Play&logo=googleplay' alt='Google Play'></a>
         <br>
-        <a href='https://gitlab.com/fdroid/fdroiddata/-/blob/master/metadata/eu.ottop.yamlauncher.yml'><img
-                alt="F-Droid (including pre-releases)"
-                src="https://img.shields.io/f-droid/v/eu.ottop.yamlauncher?color=FFB86C&style=flat-square"></a>
+        <a href='https://apt.izzysoft.de/fdroid/index/apk/eu.ottop.yamlauncher'><img alt="IzzyOnDroid (including pre-releases)" src="https://img.shields.io/endpoint?url=https://apt.izzysoft.de/fdroid/api/v1/shield/eu.ottop.yamlauncher&color=FFB86C&style=flat-square&label=IzzyOnDroid"></a>
+        <a href='https://github.com/DroidWorksStudio/yam_launcher/releases/latest'><img alt="GitHub release (latest by date)" src="https://img.shields.io/github/v/release/DroidWorksStudio/yam_launcher?color=FFB86C&style=flat-square&label=Github"></a>
+        <br>
+        <a href='https://github.com/DroidWorksStudio/yam_launcher/releases/latest'><img src='https://img.shields.io/endpoint?url=https%3A%2F%2Fplay.cuzi.workers.dev%2Fplay%3Fi%3Deu.ottop.yamlauncher%26gl%3DUK%26hl%3Den%26l%3D%24name%26m%3D%24version&color=FFB86C&style=flat-square&label=Google%20Play' alt='Google Play'></a>
+        <a href='https://gitlab.com/fdroid/fdroiddata/-/blob/master/metadata/eu.ottop.yamlauncher.yml'><img alt="F-Droid (including pre-releases)" src="https://img.shields.io/f-droid/v/eu.ottop.yamlauncher?color=FFB86C&style=flat-square&label=F-Droid"></a>
         <br>
         <img src='https://img.shields.io/badge/Maintained-yes-FF5555?style=flat-square' alt="Maintained">
     </p>
@@ -124,6 +113,7 @@ After installation, Android will usually prompt you to set YAM Launcher as your 
 3. Choose "Always" to set it as default
 
 Alternatively, you can manually set it in your device settings:
+
 1. Go to Settings > Apps > Default apps (or similar, depending on your device)
 2. Tap "Home app"
 3. Select "YAM Launcher"
@@ -164,7 +154,7 @@ To fix (only if you want to enable the double tap to lock feature):
 We take your privacy seriously. YAM Launcher is designed with privacy as a core principle:
 
 - **No Data Collection**: By default, no data leaves your device and no data is sent to the developer or any third
-parties
+  parties
 - **No Tracking**: No analytics, no user behavior tracking, no advertising
 - **Open Source**: You can verify our privacy claims by reviewing the source code yourself
 - **Local Processing**: All app management, searching, and customization happens locally on your device
@@ -174,7 +164,7 @@ parties
 Some optional features require external services:
 
 - **Weather Integration** (optional): When enabled, coordinates are sent to [Open-Meteo](https://open-meteo.com/) (a
-privacy-focused weather service). They may log your IP address for server statistics, but no personal data is stored.
+  privacy-focused weather service). They may log your IP address for server statistics, but no personal data is stored.
 - **Contacts Search** (optional): Requires permission to read contacts, but contact data never leaves your device
 
 ### Permissions Explained
@@ -188,12 +178,12 @@ YAM Launcher requests several permissions to provide its functionality. Here's w
 needed:
 
 - `REQUEST_DELETE_PACKAGES` - Allows uninstallation of apps through the launcher's activity menu (when you long-press an
-app and select "Uninstall")
+  app and select "Uninstall")
 - `EXPAND_STATUS_BAR` - Allows pulling down the status bar/notification panel when you swipe down on the home screen
 - `INTERNET` - Required for API calls to Open-Meteo weather service. Only used if weather integration is enabled in
-settings
+  settings
 - `ACCESS_COARSE_LOCATION` - Used to determine your location for weather forecasts when GPS location is enabled. Not
-used unless you enable weather with GPS
+  used unless you enable weather with GPS
 - `READ_CONTACTS` - Used to search and access your contacts. Only requested if you enable the contacts search feature
 - `SET_ALARM` - Used when you tap the clock to open your default alarm/clock app
 - `QUERY_ALL_PACKAGES` - Required to detect all installed apps on your device so they appear in the app drawer
