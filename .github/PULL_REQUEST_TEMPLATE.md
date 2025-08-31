@@ -11,7 +11,7 @@
 - [ ] Security Fix <!-- Fixes a vulnerability or improves security -->
 - [ ] CI/CD or Build Config <!-- Updates to GitHub Actions, pipelines, or build tools -->
 - [ ] Breaking Change <!-- Existing functionality will no longer work as expected -->
-- [ ] Release <!-- Prepares a new MultiLauncher release -->
+- [ ] Release <!-- Prepares a new YAM Launcher release -->
 - [ ] Documentation Update Required <!-- Documentation needs updating -->
 
 ---
@@ -53,7 +53,7 @@
 
 ### Test Information <!-- Required -->
 
-- **MultiLauncher Version:**
+- **YAM Launcher Version:**
 - **Device Name:**
 - **Android Version:**
 - **Other Notes:**
