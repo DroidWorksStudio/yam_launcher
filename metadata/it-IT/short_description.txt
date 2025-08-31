@@ -1,1 +1,1 @@
-YAM Launcher is a minimalist text-based launcher for Android with weather!
+YAM Launcher è un launcher minimalista basato su testo per Android con previsioni meteo!
