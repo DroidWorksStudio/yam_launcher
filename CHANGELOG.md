@@ -8,6 +8,10 @@ All notable changes to this project will be documented in this file. See [conven
 
 - Add GitHub issue and pull request templates - ([a28f9b9](https://github.com/DroidWorksStudio/yam_launcher/commit/a28f9b9a00597246d29b020c1f3de474253918e1))
 
+### Language Support:
+
+- Updated Language Files. ([#3](https://github.com/DroidWorksStudio/yam_launcher/issues/3)) - ([a024304](https://github.com/DroidWorksStudio/yam_launcher/commit/a02430460f7c64080fed6cadc182c09ee77a793b))
+
 ## [1.8.0.1](https://github.com/DroidWorksStudio/yam_launcher/tree/v1.8.0.1) - (30, August 2025)
 
 ### Feature Removal:

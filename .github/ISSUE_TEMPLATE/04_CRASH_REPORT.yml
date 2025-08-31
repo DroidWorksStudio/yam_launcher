@@ -1,5 +1,5 @@
 name: Crash Report
-description: Create a report with a generated crash log attached (if possible) to help MultiLauncher improve
+description: Create a report with a generated crash log attached (if possible) to help YAM Launcher improve
 labels: [ "Type: Crash Report" ]
 title: "[Crash Report] add text here"
 assignees: [ "CreativeCodeCat" ]
@@ -7,7 +7,7 @@ body:
   - type: markdown
     attributes:
       value: |
-        Thank you for helping me to make MultiLauncher better by reporting a crash. :hugs:
+        Thank you for helping me to make YAM Launcher better by reporting a crash. :hugs:
         Please fill in as much information as possible about your crash so that I can fix it immediately.
 
   - type: checkboxes
@@ -27,7 +27,7 @@ body:
           required: true
         - label: "I have created a title that clearly summarizes the crash or its trigger condition."
           required: true
-        - label: "I optionally [donated](https://www.buymeacoffee.com/CreativeCodeCat) to support the MultiLauncher mission."
+        - label: "I optionally [donated](https://www.buymeacoffee.com/CreativeCodeCat) to support the YAM Launcher mission."
           required: false
 
   - type: input
