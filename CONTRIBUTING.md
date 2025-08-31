@@ -88,8 +88,8 @@ People *love* thorough bug reports. I'm not even kidding.
 
 ## License
 
-**Any contributions you make will be under the GPL-3.0 License**
+**Any contributions you make will be under the MIT License**
 
-In short, when you submit code changes, your submissions are understood to be under the same [GPL-3.0 License]([http://choosealicense.com/licenses/mit/](https://choosealicense.com/licenses/gpl-3.0/)) that covers the project. Feel free to contact the maintainers if that's a concern.
+In short, when you submit code changes, your submissions are understood to be under the same [MIT License](http://choosealicense.com/licenses/mit/) that covers the project. Feel free to contact the maintainers if that's a concern.
 
-By contributing, you agree that your contributions will be licensed under its GPL-3.0 License.
+By contributing, you agree that your contributions will be licensed under its MIT License.
