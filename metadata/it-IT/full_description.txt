@@ -1,0 +1,15 @@
+YAM (Yet Another Minimalist) Launcher è un launcher minimalista basato su testo per Android con integrazione del meteo.
+
+Caratteristiche principali:
+
+- Nessun effetto appariscente, icona o altre distrazioni. Perfetto per il minimalismo digitale.
+- Scorciatoie personalizzabili per le app più utilizzate.
+- Integrazione meteo con [Open-Meteo](https://open-meteo.com/). (opzionale)
+- Supporto al profilo di lavoro.
+- Cerca nella parte inferiore dello schermo.
+- Funzionalità di ricerca dei contatti. (opzionale)
+- Font e stili di font personalizzabili, predefiniti sul font del tuo sistema.
+- Materiale che supporti.
+- Semplice di default, personalizzabile in ogni sua parte. 
+- Supporto per le azioni di accessibilità.
+- Open source con licenza MIT.
