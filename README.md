@@ -19,7 +19,7 @@
         <a href='https://apt.izzysoft.de/fdroid/index/apk/eu.ottop.yamlauncher'><img alt="IzzyOnDroid (including pre-releases)" src="https://img.shields.io/endpoint?url=https://apt.izzysoft.de/fdroid/api/v1/shield/eu.ottop.yamlauncher&color=FFB86C&style=flat-square&label=IzzyOnDroid"></a>
         <a href='https://github.com/DroidWorksStudio/yam_launcher/releases/latest'><img alt="GitHub release (latest by date)" src="https://img.shields.io/github/v/release/DroidWorksStudio/yam_launcher?color=FFB86C&style=flat-square&label=Github"></a>
         <br>
-        <a href='https://github.com/DroidWorksStudio/yam_launcher/releases/latest'><img src='https://img.shields.io/endpoint?url=https%3A%2F%2Fplay.cuzi.workers.dev%2Fplay%3Fi%3Deu.ottop.yamlauncher%26gl%3DUK%26hl%3Den%26l%3D%24name%26m%3D%24version&color=FFB86C&style=flat-square&label=Google%20Play' alt='Google Play'></a>
+        <a href='https://play.google.com/store/apps/details?id=eu.ottop.yamlauncher'><img src='https://img.shields.io/endpoint?url=https%3A%2F%2Fplay.cuzi.workers.dev%2Fplay%3Fi%3Deu.ottop.yamlauncher%26gl%3DUK%26hl%3Den%26l%3D%24name%26m%3D%24version&color=FFB86C&style=flat-square&label=Google%20Play' alt='Google Play'></a>
         <a href='https://gitlab.com/fdroid/fdroiddata/-/blob/master/metadata/eu.ottop.yamlauncher.yml'><img alt="F-Droid (including pre-releases)" src="https://img.shields.io/f-droid/v/eu.ottop.yamlauncher?color=FFB86C&style=flat-square&label=F-Droid"></a>
         <br>
         <img src='https://img.shields.io/badge/Maintained-yes-FF5555?style=flat-square' alt="Maintained">
